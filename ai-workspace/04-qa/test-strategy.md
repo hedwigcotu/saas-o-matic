@@ -1,13 +1,13 @@
-# Estrategia de Pruebas (Test Strategy)
+# Plan o Estrategia de Pruebas (Test Strategy)
 
 El objetivo es asegurar que el sistema es robusto, especialmente en el cálculo de dinero y la validación fiscal.
 
 ## 1. Tests Unitarios (Dominio)
 - **Herramientas:** `pytest` + `pytest-cov` + `hypothesis`.
-- **Objetivo:** 100% de cobertura en `domain/` (es código puro, sin excusas).
+- **Objetivo:** 100% de cobertura en `domain/`.
 - **Tramos (Billing):** 
   - Tests paramétricos basados en la tabla de `tiered-pricing.md`.
-  - Tests con `hypothesis` para asegurar que `base_cost` nunca devuelve un número negativo y que es monótonamente creciente.
+  - Tests con `hypothesis` para asegurar que `base_cost` nunca devuelve un número negativo y que es creciente.
 - **Validación Fiscal (Tax ID):**
   - Tests paramétricos para DNI, NIE y CIF.
   - Cubrir las 2 ramas del CIF (letra vs dígito).
@@ -19,7 +19,7 @@ El objetivo es asegurar que el sistema es robusto, especialmente en el cálculo 
 - **Herramientas:** `FastAPI TestClient` + `pytest`.
 - **Objetivo:** Probar los endpoints de `api-contracts.md`.
 - **Casos a probar:**
-  - Flujo feliz: Crear cliente (201) -> Crear simulación (201).
+  - Flujo: Crear cliente (201) -> Crear simulación (201).
   - Duplicados: Intentar crear cliente con mismo `tax_id` (409).
   - Errores de validación: Inputs negativos, strings en lugar de enteros, booleanos en `active_users` (422).
   - Cliente no encontrado: Simular para un UUID inexistente (404).
