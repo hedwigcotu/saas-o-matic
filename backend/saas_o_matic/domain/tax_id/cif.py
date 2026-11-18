@@ -14,18 +14,18 @@ def is_valid_cif(value: str) -> bool:
         return False
 
     # Suma las posiciones pares (índices 1, 3, 5) tal cual
-    sum_even = sum(int(digits[i]) for i in [1, 3, 5])
+    even_sum = sum(int(digits[i]) for i in [1, 3, 5])
     
     # Suma las posiciones impares (índices 0, 2, 4, 6) duplicadas
-    sum_odd = 0
+    odd_sum = 0
     for i in [0, 2, 4, 6]:
         double = int(digits[i]) * 2
-        sum_odd += double if double < 10 else double - 9
+        odd_sum += double if double < 10 else double - 9
 
-    total_sum = sum_even + sum_odd
+    total_sum = even_sum + odd_sum
     control_digit = (10 - (total_sum % 10)) % 10
 
-    # Validación según el tipo de letra inicial
+    # Valida según el tipo de letra inicial
     if first_letter in "ABEH":
         return control == str(control_digit)
     elif first_letter in "KPQS":

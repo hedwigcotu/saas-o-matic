@@ -9,7 +9,7 @@ from saas_o_matic.domain.errors import InvalidTaxIdError
     ("Y1234567X", TaxIdKind.NIE),
     ("A12345674", TaxIdKind.CIF), # Verificado en la spec
     ("B12345674", TaxIdKind.CIF),
-    ("K1234567E", TaxIdKind.CIF), # Letra
+    ("K1234567D", TaxIdKind.CIF), # Letra
 ])
 def test_valid_spanish_tax_ids(tax_id, expected_kind):
     assert validate_tax_id(tax_id, "ES") == expected_kind
